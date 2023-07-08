@@ -1,11 +1,11 @@
 export const bbdd = [
    {
-      email: 'nico@quecomemos.com',
+      email: 'nico@prueba.com',
       contraseña: 'nico123',
    },
 
    {
-      email: 'profe@quecomemos.com',
-      contraseña: 'profe123',
+      email: 'prueba@prueba.com',
+      contraseña: 'asd1234',
    }
 ]

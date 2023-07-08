@@ -1,11 +1,5 @@
 import {bbdd} from './bbdd.js'
 
-const buttonLogin = document.getElementById("loginButton");
-
-buttonLogin.addEventListener("click", () => {
-   console.log("CLICK DE BOTON")
-})
-
 const login = document.querySelector("#login");
 
 const user = {
@@ -29,7 +23,21 @@ inputs.forEach((el) => {
          user.contraseña = value;
       }
    })
-
 }); 
+
+
+const buttonLogin = document.getElementById("loginButton");
+
+buttonLogin.addEventListener("click", () => {
+   const usuarioEncontrado = bbdd.find(el => el.usuario === user.usuario && el.contraseña === user.contraseña)
+   if (usuarioEncontrado) {
+      console.log("USUARIO ENCONTRADOOOOOOOOOOOOO");
+      const auth = { name: usuarioEncontrado.usuario, isLogin: true }
+      localStorage.setItem("isLogin", JSON.stringify(auth));
+   } else {
+      console.log("No existe el usuario");
+   }
+})
+
 
 
