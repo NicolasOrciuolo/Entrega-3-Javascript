@@ -1,5 +1,7 @@
 import { bbdd } from './bbdd.js'
 
+// LOGIN ###################################################################################################
+
 const user = {
    email: '',
    contraseña: ''
@@ -32,16 +34,17 @@ buttonLogin.addEventListener("click", () => {
    if (usuarioEncontrado) {
       const auth = { name: usuarioEncontrado.email, isLogin: true }
       localStorage.setItem("isLogin", JSON.stringify(auth));
-      window.location.replace('../pag.html');
+      window.location.replace('../menu.html');
    } else {
       console.log("No existe el usuario");
    }
 })
 
 if (isAuth.isLogin) {
-   window.location.replace('../pag.html');
+   window.location.replace('../menu.html');
 }
 
 
+// CARRITO DE COMPRAS ######################################################################################
 
 
