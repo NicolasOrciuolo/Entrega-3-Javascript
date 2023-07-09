@@ -1,7 +1,6 @@
-import { bbdd } from './bbdd.js'
+import { bbdd, inicializarRecetas } from './bbdd.js'
 
 // LOGIN ###################################################################################################
-
 const user = {
    email: '',
    contraseña: ''
@@ -44,7 +43,5 @@ if (isAuth.isLogin) {
    window.location.replace('../menu.html');
 }
 
-
-// CARRITO DE COMPRAS ######################################################################################
 
 
