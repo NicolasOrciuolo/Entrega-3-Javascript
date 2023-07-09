@@ -5,9 +5,9 @@ const user = {
    contraseña: ''
 }
 
-const isAuth = JSON.parse(localStorage.getItem("isLogin")) || [];
-
 const inputs = document.querySelectorAll("input"); //Atrapo todos los elementos tipo input
+
+const isAuth = JSON.parse(localStorage.getItem("isLogin")) || [];
 
 inputs.forEach((el) => {
    el.addEventListener("input", (e) => {
@@ -32,14 +32,14 @@ buttonLogin.addEventListener("click", () => {
    if (usuarioEncontrado) {
       const auth = { name: usuarioEncontrado.email, isLogin: true }
       localStorage.setItem("isLogin", JSON.stringify(auth));
+      window.location.replace('../pag.html');
    } else {
       console.log("No existe el usuario");
    }
 })
 
 if (isAuth.isLogin) {
-   window.location.replace = '../pag.html';
-   window.location.reload();
+   window.location.replace('../pag.html');
 }
 
 
