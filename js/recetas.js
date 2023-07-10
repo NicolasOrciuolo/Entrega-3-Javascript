@@ -5,13 +5,13 @@ import { bbdd, inicializarRecetas } from './bbdd.js'
 
 // PAGINA CON RECETAS PARA ELEGIR
 export const arrayDeRecetas = [];
-const menu = document.querySelector("#menu");
+const menu = document.querySelector("#menu"); //Atrapo el div con id=menu en menu.html
 export const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
-inicializarRecetas(arrayDeRecetas);
+inicializarRecetas(arrayDeRecetas); //Push de las recetas de la bbdd al arrayDeRecetas
 
-arrayDeRecetas.forEach((el) => {
+arrayDeRecetas.forEach((el) => { 
    const tarjeta = document.createElement("div");
    tarjeta.innerHTML = ` 
                         <div class="col">
@@ -50,13 +50,13 @@ arrayDeRecetas.forEach((el) => {
 
 
 // CARRITO DE COMPRAS
-const botonCarrito = document.getElementById("irAlCarrito");
+const botonCarrito = document.getElementById("irAlCarrito"); //Atrapo el botón de Ir al carrito
 botonCarrito.addEventListener("click", () => {
    menu.innerHTML = ``;
 
-   const pedido = document.querySelector("#pedido");
+   const pedido = document.querySelector("#pedido"); //Atrapo el div de id=pedido
 
-   const tituloPagina = document.createElement("h1");
+   const tituloPagina = document.createElement("h1"); 
    tituloPagina.innerHTML =`Su pedido:`
    pedido.appendChild(tituloPagina);
 
