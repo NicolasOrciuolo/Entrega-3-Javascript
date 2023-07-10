@@ -1,6 +1,9 @@
 import { bbdd, inicializarRecetas } from './bbdd.js'
 
 // SELECCIÓN DE COMIDAS ######################################################################################
+
+
+// PAGINA CON RECETAS PARA ELEGIR
 export const arrayDeRecetas = [];
 const menu = document.querySelector("#menu");
 export const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -46,12 +49,16 @@ arrayDeRecetas.forEach((el) => {
 })
 
 
+// CARRITO DE COMPRAS
 const botonCarrito = document.getElementById("irAlCarrito");
 botonCarrito.addEventListener("click", () => {
    menu.innerHTML = ``;
 
    const pedido = document.querySelector("#pedido");
 
+   const tituloPagina = document.createElement("h1");
+   tituloPagina.innerHTML =`Su pedido:`
+   pedido.appendChild(tituloPagina);
 
 
    arrayCarrito.forEach((el) => {
@@ -80,16 +87,12 @@ botonCarrito.addEventListener("click", () => {
                         Total del pedido: $${sumaPedido}
                      </h2>
    `
-   
    const confirmarCompra = document.createElement("button");
    confirmarCompra.classList.add("col-2", "btn", "btn-outline-success","text-center");
    confirmarCompra.innerText = "Confirmar Compra";
    
    pedido.appendChild(total);
    total.appendChild(confirmarCompra);
-
-
-
 
    confirmarCompra.addEventListener("click", () => {
       localStorage.setItem("carrito", JSON.stringify(""));
@@ -100,6 +103,9 @@ botonCarrito.addEventListener("click", () => {
          title:'Su pedido se ha registrado con éxito. Muchas gracias',
          timer: 3000
       })
+
+      setTimeout('document.location.reload()',3000);
+
    })
 
 })
