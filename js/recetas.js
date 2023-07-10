@@ -1,7 +1,7 @@
 import { bbdd, inicializarRecetas } from './bbdd.js'
 
 // SELECCIÓN DE COMIDAS ######################################################################################
-const arrayDeRecetas = [];
+export const arrayDeRecetas = [];
 const menu = document.querySelector("#menu");
 export const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -30,8 +30,8 @@ arrayDeRecetas.forEach((el) => {
 
    buttonAgregar.addEventListener("click", () => {
       arrayCarrito.push(el);
-      console.log(arrayCarrito);
       localStorage.setItem("carrito", JSON.stringify(arrayCarrito));
+
       Swal.fire({
          position: 'center',
          icon: 'success',
@@ -45,9 +45,63 @@ arrayDeRecetas.forEach((el) => {
 
 })
 
+
 const botonCarrito = document.getElementById("irAlCarrito");
 botonCarrito.addEventListener("click", () => {
-   window.location.replace('../carrito.html');
+   menu.innerHTML = ``;
+
+   const pedido = document.querySelector("#pedido");
+
+
+
+   arrayCarrito.forEach((el) => {
+      const orden = document.createElement("div");
+      orden.innerHTML = ` 
+                        <div class="col">
+                           <div class="card w-70 text-center">
+                              <div class="card-body">
+                                    <h1 class="card-title fs-3">${el.nombre}</h1>
+                                    <h2 class="card-text fs-5">Precio: $${el.precio}</h2>
+                                    <p class="card-text">${el.descripcion}</p>
+                                 </div>
+   
+                              </div>
+                           </div>
+      `
+      pedido.appendChild(orden);
+   })
+
+   let sumaPedido = arrayCarrito.reduce((acumulador,el)=> acumulador + el.precio,0);
+
+   const total = document.createElement("div");
+   total.classList.add("text-center","d-flex","justify-content-center")
+   total.innerHTML = `
+                     <h2>
+                        Total del pedido: $${sumaPedido}
+                     </h2>
+   `
+   
+   const confirmarCompra = document.createElement("button");
+   confirmarCompra.classList.add("col-2", "btn", "btn-outline-success","text-center");
+   confirmarCompra.innerText = "Confirmar Compra";
+   
+   pedido.appendChild(total);
+   total.appendChild(confirmarCompra);
+
+
+
+
+   confirmarCompra.addEventListener("click", () => {
+      localStorage.setItem("carrito", JSON.stringify(""));
+   
+      Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title:'Su pedido se ha registrado con éxito. Muchas gracias',
+         timer: 3000
+      })
+   })
+
 })
 
 
