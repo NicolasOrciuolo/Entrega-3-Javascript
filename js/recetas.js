@@ -1,9 +1,9 @@
 import { bbdd, inicializarRecetas } from './bbdd.js'
 
-// CARRITO DE COMPRAS ######################################################################################
+// SELECCIÓN DE COMIDAS ######################################################################################
 const arrayDeRecetas = [];
 const menu = document.querySelector("#menu");
-const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+export const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
 inicializarRecetas(arrayDeRecetas);
@@ -44,6 +44,14 @@ arrayDeRecetas.forEach((el) => {
    menu.appendChild(tarjeta);
 
 })
+
+const botonCarrito = document.getElementById("irAlCarrito");
+botonCarrito.addEventListener("click", () => {
+   window.location.replace('../carrito.html');
+})
+
+
+
 
 
 
