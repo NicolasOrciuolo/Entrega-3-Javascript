@@ -3,6 +3,8 @@ import { bbdd, inicializarRecetas } from './bbdd.js'
 // CARRITO DE COMPRAS ######################################################################################
 const arrayDeRecetas = [];
 const menu = document.querySelector("#menu");
+const arrayCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
 
 inicializarRecetas(arrayDeRecetas);
 
@@ -18,22 +20,30 @@ arrayDeRecetas.forEach((el) => {
                                  <p class="card-text">${el.descripcion}</p>
                               </div>
 
-                              <form class="row row-cols-lg-auto g-3 align-items-center">
-                              <div class="col-12">
-                                 <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
-                                 <div class="input-group">
-                                    <div class="input-group-text">Cantidad</div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="">
-                                 </div>
-                              </div>
-
-                              <div class="col-12">
-                                 <button type="submit" class="btn btn-primary">Seleccionar</button>
-                              </div>
-
-
                            </div>
                         </div>
    `
+
+   const buttonAgregar = document.createElement("button");
+   buttonAgregar.classList.add("col-12", "btn", "btn-primary");
+   buttonAgregar.innerText = "Seleccionar";
+
+   buttonAgregar.addEventListener("click", () => {
+      arrayCarrito.push(el);
+      console.log(arrayCarrito);
+      localStorage.setItem("carrito", JSON.stringify(arrayCarrito));
+      Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: el.nombre + ' añadida al carrito',
+         timer: 1500
+      })
+   })
+
+   tarjeta.appendChild(buttonAgregar);
    menu.appendChild(tarjeta);
+
 })
+
+
+

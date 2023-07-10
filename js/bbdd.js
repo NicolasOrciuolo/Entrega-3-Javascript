@@ -94,5 +94,7 @@ export function inicializarRecetas(arrayDeRecetas) {
    arrayDeRecetas.push(receta8);
    const receta9 = new Recetas(receta9Obj);
    arrayDeRecetas.push(receta9);
-
 }
+
+
+
